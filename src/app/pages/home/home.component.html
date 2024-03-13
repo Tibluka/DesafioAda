@@ -31,6 +31,9 @@
                 (dragover)="allowDrop($event)">
                 <h4>{{column.titulo}}</h4>
                 <hr>
+                <div class="no-cards" *ngIf="column.cards.length === 0">
+                    <i>Sem ToDo</i>
+                </div>
                 <div class="cards">
                     <div class="card" (dragstart)="startDragging(card)" (dragend)="endDragging(card)" draggable="true"
                         (drag)="draggingCard(card)" *ngFor="let card of column.cards"
