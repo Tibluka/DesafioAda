@@ -11,6 +11,11 @@ export class AuthService {
   canActivate(next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot) {
     if (state.url === '/') {
+      const token = localStorage.getItem('ada_usr_tkn');
+      if (!token) {
+        this.router.navigate(['/login']);
+        return false;
+      }
       this.router.navigate(['/home']);
     }
     return true;

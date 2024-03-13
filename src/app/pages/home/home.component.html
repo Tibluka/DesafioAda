@@ -1,5 +1,63 @@
 <main>
+    <div class="dashboard">
 
-    
+        <h1>Bem-vindo ao ToDoList</h1>
+
+
+        <h2>Arraste os cards para movimentar!</h2>
+        <div class="columns">
+            <div class="column">
+                <h4>{{newColumn.titulo}}</h4>
+                <hr>
+                <div class="cards" style="cursor: none">
+                    <div class="card" *ngFor="let card of newColumn.cards">
+                        <header>
+                            <input type="text" placeholder="Insira um título" [(ngModel)]="card.titulo">
+                            <!-- <img (click)="addToDo()" src="../../../assets/save-icon.svg" width="16" height="16" alt=""> -->
+                        </header>
+
+                        <div class="description">
+                            <textarea [(ngModel)]="card.conteudo" name="description" id="" rows="5"></textarea>
+                        </div>
+
+                        <div class="action">
+                            <img (click)="addToDo()" src="../../../assets/plus-round-icon.svg" width="32" height="32"
+                                alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="column" *ngFor="let column of dashboard.columns" (drop)="drop(column.lista)"
+                (dragover)="allowDrop($event)">
+                <h4>{{column.titulo}}</h4>
+                <hr>
+                <div class="cards">
+                    <div class="card" (dragstart)="startDragging(card)" (dragend)="endDragging(card)" draggable="true"
+                        (drag)="draggingCard(card)" *ngFor="let card of column.cards"
+                        [ngClass]="{'dragging': card.isDragging }">
+                        <header>
+                            <input *ngIf="card.editing" type="text" placeholder="Insira um título"
+                                [(ngModel)]="card.titulo">
+                            <h5 *ngIf="!card.editing">{{card.titulo}}</h5>
+                            <img *ngIf="!card.editing" (click)="card.editing = true" src="../../../assets/edit.svg"
+                                width="16" height="16" alt="">
+                            <img *ngIf="card.editing" (click)="updateCard(card);card.editing = false"
+                                src="../../../assets/save-icon.svg" width="16" height="16" alt="">
+                        </header>
+
+                        <div class="description">
+                            <textarea [readonly]="!card.editing" [(ngModel)]="card.conteudo" name="description" id=""
+                                rows="5"></textarea>
+                        </div>
+
+                        <div class="action">
+                            <img (click)="eraseCard(card)" width="32" height="32"
+                                src="../../../assets/red-trash-can-icon.svg" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </main>

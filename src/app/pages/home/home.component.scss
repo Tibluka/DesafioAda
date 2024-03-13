@@ -1,0 +1,74 @@
+main {
+    .dashboard {
+        height: 90vh;
+        padding: 32px;
+        .columns {
+            display: grid;
+            gap: 32px;
+            grid-template-columns: repeat(4, 1fr);
+            height: 100%;
+            .column {
+                background-color: rgb(236, 234, 234);
+                h4 {
+                    font-size: 16px;
+                    text-align: center;
+                }
+                hr {
+                    height: 3px;
+                    background-color: rgba(214, 212, 212, 0.815);
+                    border: none;
+                }
+
+                .cards {
+                    .card {
+                        background: white;
+                        border-radius: 12px;
+                        margin: 0 16px 16px 16px;
+                        padding: 8px;
+                        cursor: pointer;
+
+                        header {
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                            margin-bottom: 16px;
+                            input {
+                                border: none;
+                                width: 100%;
+                                outline: none;
+                            }
+                        }
+
+                        h5 {
+                            font-size: 14px;
+                            margin: 0;
+                        }
+
+                        .description {
+                            textarea {
+                                width: 100%;
+                                border: 1px solid rgb(240, 237, 237);
+                                outline: none;
+                            }
+                        }
+
+                        .action {
+                            width: 100%;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+
+                            img {
+                                margin: 16px auto;
+                            }
+                        }
+
+                        &.card.dragging {
+                            opacity: 0.5;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
