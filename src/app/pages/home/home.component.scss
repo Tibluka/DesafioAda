@@ -1,6 +1,6 @@
 main {
     .dashboard {
-        height: 90vh;
+        height: 700px;
         padding: 32px;
         .columns {
             display: grid;
@@ -29,6 +29,9 @@ main {
                 }
 
                 .cards {
+                    height: 700px;
+                    overflow: hidden;
+                    overflow-y: scroll;
                     .card {
                         background: white;
                         border-radius: 12px;
